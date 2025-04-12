@@ -1,10 +1,10 @@
 <div align="center">
 	<a href="https://frappe.io/hr">
-		<img src="https://raw.githubusercontent.com/frappe/hrms/develop/hrms/public/images/frappe-hr-logo.png" height="128" alt="Frappe HR Logo">
+		<img src="https://0x0.st/8-yH.png" height="128" alt="Frappe HR Logo">
 	</a>
-	<h2>Frappe HR</h2>
+	<h2>MI HR</h2>
 	<p align="center">
-		<p>Open Source, modern, and easy-to-use HR and Payroll Software for all organizations</p>
+		<p>Open Source, modern, and easy-to-use MI and Payroll Software for all organizations</p>
 	</p>
 
 [![CI](https://github.com/frappe/hrms/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/frappe/hrms/actions/workflows/ci.yml)

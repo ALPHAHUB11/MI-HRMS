@@ -255,7 +255,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2024-04-08 13:56:03.818019",
+ "modified": "2025-03-11 13:41:37.591369",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -342,6 +342,19 @@
    "report": 1,
    "role": "HR Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Asst. Manager",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

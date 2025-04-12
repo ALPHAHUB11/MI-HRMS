@@ -119,6 +119,7 @@
    "label": "Shift Details"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shift_location",
    "fieldtype": "Link",
    "label": "Shift Location",
@@ -138,7 +139,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-16 15:29:41.502080",
+ "modified": "2025-03-11 09:40:43.991220",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Assignment",

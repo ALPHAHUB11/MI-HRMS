@@ -1,0 +1,8 @@
+{
+    "name": "MI HR",
+    "short_name": "MI HR",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000"
+}

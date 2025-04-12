@@ -6,6 +6,7 @@ import leaveRoutes from "./leaves"
 import claimRoutes from "./claims"
 import employeeAdvanceRoutes from "./advances"
 import salarySlipRoutes from "./salary_slips"
+import wfhRoutes from "./work_from_home"
 
 const routes = [
 	{
@@ -45,6 +46,31 @@ const routes = [
 				name: "SalarySlipsDashboard",
 				component: () => import("@/views/salary_slip/Dashboard.vue"),
 			},
+			{
+				path: "/dashboard/work-from-home",
+				name: "WorkFromHomeDashboard",
+				component: () => import("@/views/work_from_home/Dashboard.vue"), // Adjust path as needed
+			},
+			{
+				path: "/dashboardd/work-from-home",
+				name: "WhfDetails",
+				component: () => import("@/views/work_from_home/Dashboardd.vue"),
+			}, 
+			{
+				path: "/task",
+				name: "TaskView",
+				component: () => import("@/views/work_from_home/TaskView.vue"), // Adjust path as needed
+			},
+			{
+				path: "/work-from-home-history",
+				name: "HistoryView",
+				component: () => import("@/views/work_from_home/HistoryView.vue"), // Adjust path as needed
+			},
+			{
+				path: "/employee_info",
+				name: "EmployeeInfo",
+				component: () => import("@/views/employee_info/EmployeeInfo.vue"), // Adjust path as needed
+			},				
 		],
 	},
 	{
@@ -77,6 +103,7 @@ const routes = [
 	...claimRoutes,
 	...employeeAdvanceRoutes,
 	...salarySlipRoutes,
+	...wfhRoutes,
 ]
 
 const router = createRouter({

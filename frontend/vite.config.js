@@ -23,32 +23,32 @@ export default defineConfig({
 			},
 			manifest: {
 				display: "standalone",
-				name: "Frappe HR",
-				short_name: "Frappe HR",
+				name: "MI HR",
+				short_name: "MI HR",
 				start_url: "/hrms",
 				description: "Everyday HR & Payroll operations at your fingertips",
 				theme_color: "#ffffff",
 				icons: [
 					{
-						src: "/assets/hrms/manifest/manifest-icon-192.maskable.png",
+						src: "/assets/hrms/manifest/MI.png",
 						sizes: "192x192",
 						type: "image/png",
 						purpose: "any",
 					},
 					{
-						src: "/assets/hrms/manifest/manifest-icon-192.maskable.png",
+						src: "/assets/hrms/manifest/MI.png",
 						sizes: "192x192",
 						type: "image/png",
 						purpose: "maskable",
 					},
 					{
-						src: "/assets/hrms/manifest/manifest-icon-512.maskable.png",
+						src: "/assets/hrms/manifest/MI.png",
 						sizes: "512x512",
 						type: "image/png",
 						purpose: "any",
 					},
 					{
-						src: "/assets/hrms/manifest/manifest-icon-512.maskable.png",
+						src: "/assets/hrms/manifest/MI.png",
 						sizes: "512x512",
 						type: "image/png",
 						purpose: "maskable",
@@ -76,6 +76,7 @@ export default defineConfig({
 					"frappe-ui": ["frappe-ui"],
 				},
 			},
+			// external: ["axios"], // 
 		},
 	},
 	optimizeDeps: {
@@ -84,6 +85,7 @@ export default defineConfig({
 			"showdown",
 			"tailwind.config.js",
 			"engine.io-client",
+			"axios",
 		],
 	},
 })

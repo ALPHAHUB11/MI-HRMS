@@ -5,7 +5,7 @@ from hrms.setup import before_uninstall as remove_custom_fields
 
 def before_uninstall():
 	try:
-		print("Removing customizations created by the Frappe HR app...")
+		print("Removing customizations created by the MI HR app...")
 		remove_custom_fields()
 
 	except Exception as e:
@@ -18,4 +18,4 @@ def before_uninstall():
 		)
 		raise e
 
-	click.secho("Frappe HR app customizations have been removed successfully...", fg="green")
+	click.secho("MI HR app customizations have been removed successfully...", fg="green")

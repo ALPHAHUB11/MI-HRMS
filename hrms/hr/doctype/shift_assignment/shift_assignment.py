@@ -137,14 +137,33 @@ class ShiftAssignment(Document):
 	def throw_overlap_error(self, shift_details):
 		shift_details = frappe._dict(shift_details)
 		if shift_details.docstatus == 1 and shift_details.status == "Active":
-			msg = _(
-				"Employee {0} already has an active Shift {1}: {2} that overlaps within this period."
-			).format(
-				frappe.bold(self.employee),
-				frappe.bold(shift_details.shift_type),
-				get_link_to_form("Shift Assignment", shift_details.name),
+			# Automatically make the previous shift inactive
+			frappe.db.set_value("Shift Assignment", shift_details.name, "status", "Inactive")
+			frappe.db.commit()
+			frappe.msgprint(
+				_(
+					"Employee {0} already has an active Shift {1}: {2} that overlaps within this period.<br>"
+					"The previous shift has been marked as 'Inactive'."
+				).format(
+					frappe.bold(self.employee),
+					frappe.bold(shift_details.shift_type),
+					get_link_to_form("Shift Assignment", shift_details.name),
+				),
+				title=_("Warning")
 			)
-			frappe.throw(msg, title=_("Overlapping Shifts"), exc=OverlappingShiftError)
+
+
+	# def throw_overlap_error(self, shift_details):
+	# 	shift_details = frappe._dict(shift_details)
+	# 	if shift_details.docstatus == 1 and shift_details.status == "Active":
+	# 		msg = _(
+	# 			"Employee {0} already has an active Shift {1}: {2} that overlaps within this period."
+	# 		).format(
+	# 			frappe.bold(self.employee),
+	# 			frappe.bold(shift_details.shift_type),
+	# 			get_link_to_form("Shift Assignment", shift_details.name),
+	# 		)
+	# 		frappe.throw(msg, title=_("Overlapping Shifts"), exc=OverlappingShiftError)
 
 
 def has_overlapping_timings(shift_1: str, shift_2: str) -> bool:

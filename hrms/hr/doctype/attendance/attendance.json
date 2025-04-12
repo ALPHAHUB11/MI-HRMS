@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "naming_series:",
+ "autoname": "hash",
  "creation": "2013-01-10 16:34:13",
  "doctype": "DocType",
  "document_type": "Setup",
@@ -207,11 +207,11 @@
  "idx": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-05 20:55:02.905452",
+ "modified": "2025-01-31 11:16:34.449149",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Attendance",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {

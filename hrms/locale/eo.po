@@ -6967,7 +6967,7 @@ msgstr "crwdns151242:0crwdne151242:0"
 
 #: frontend/src/components/InstallPrompt.vue:5
 #: frontend/src/components/InstallPrompt.vue:28
-msgid "Install Frappe HR"
+msgid "Install MI HR"
 msgstr "crwdns151244:0crwdne151244:0"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:409

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "HR-SHR-.YY.-.MM.-.#####",
+ "autoname": "format:SR : {employee} :  {DD}-{MM}-{YYYY}",
  "creation": "2018-04-13 16:32:27.974273",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -56,12 +56,12 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "employee.company",
    "fieldname": "company",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Company",
-   "options": "Company",
-   "reqd": 1
+   "options": "Company"
   },
   {
    "fieldname": "from_date",
@@ -103,10 +103,11 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-03-27 13:10:40.687344",
+ "modified": "2025-01-15 18:44:58.504504",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Request",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

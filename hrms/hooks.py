@@ -1,19 +1,22 @@
 app_name = "hrms"
-app_title = "Frappe HR"
+app_title = "MI HR"
 app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = "Modern HR and Payroll Software"
 app_email = "contact@frappe.io"
 app_license = "GNU General Public License (v3)"
 required_apps = ["frappe/erpnext"]
 source_link = "http://github.com/frappe/hrms"
-app_logo_url = "/assets/hrms/images/frappe-hr-logo.svg"
+# app_logo_url = "/assets/hrms/images/frappe-hr-logo.svg"
+app_logo_url = "https://0x0.st/8-yH.png"
+
 app_home = "/app/hr"
 
 add_to_apps_screen = [
 	{
 		"name": "hrms",
-		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
-		"title": "Frappe HR",
+		# "logo": "/assets/hrms/images/frappe-hr-logo.svg",
+		"logo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIokfmWyfJWEL17Xm88E7E-g3oGrMPb4U49Q&s",
+		"title": "MI HR",
 		"route": "/app/hr",
 		"has_permission": "hrms.hr.utils.check_app_permission",
 	}
@@ -56,6 +59,10 @@ doctype_js = {
 	"Delivery Trip": "public/js/erpnext/delivery_trip.js",
 	"Bank Transaction": "public/js/erpnext/bank_transaction.js",
 }
+# api_whitelist = [
+#     "hrms.api.user.update_user_image"
+# ]
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -104,6 +111,7 @@ setup_wizard_complete = "hrms.subscription_utils.update_erpnext_access"
 
 # Uninstallation
 # ------------
+api_whitelist = ["hrms.csrf_token.get_csrf_token"]
 
 before_uninstall = "hrms.uninstall.before_uninstall"
 # after_uninstall = "hrms.uninstall.after_uninstall"

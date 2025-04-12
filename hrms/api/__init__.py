@@ -26,7 +26,6 @@ SUPPORTED_FIELD_TYPES = [
 	"Currency",
 ]
 
-
 @frappe.whitelist()
 def get_current_user_info() -> dict:
 	current_user = frappe.session.user
@@ -51,6 +50,8 @@ def get_current_employee_info() -> dict:
 			"designation",
 			"department",
 			"company",
+			"custom_eligible_for_work_from_home",  
+            "custom_wfh_approver",
 			"reports_to",
 			"user_id",
 		],
@@ -70,6 +71,7 @@ def get_all_employees() -> list[dict]:
 			"department",
 			"company",
 			"reports_to",
+         	"custom_wfh_approver",
 			"user_id",
 			"image",
 			"status",
@@ -214,6 +216,8 @@ def get_filters(
 				"Shift Request": "approver",
 				"Leave Application": "leave_approver",
 				"Expense Claim": "expense_approver",
+				"Work From Home": "approver",
+
 			}
 			filters.status = "Open" if doctype == "Leave Application" else "Draft"
 			filters[approver_field_map[doctype]] = approver_id
@@ -765,3 +769,352 @@ def get_allowed_states_for_workflow(workflow: dict, user_id: str) -> list[str]:
 @frappe.whitelist()
 def get_permitted_fields_for_write(doctype: str) -> list[str]:
 	return get_permitted_fields(doctype, permission_type="write")
+
+
+
+# work from home 
+
+@frappe.whitelist()
+def get_wfh_history():
+    # Get the logged-in user's email
+    user_email = frappe.session.user
+
+    # Fetch the Employee record linked to the logged-in user
+    employee = frappe.get_value("Employee", {"user_id": user_email}, "name")
+
+    if not employee:
+        frappe.throw("No Employee record found for the current user.")
+
+    # Fetch Work From Home history for the logged-in employee
+    return frappe.get_all(
+        "Work From Home",
+        filters={"employee": employee},
+        fields=["name", "from_date", "to_date", "reason", "status"],
+        order_by="from_date desc",
+    )
+    
+    
+# def get_wfh_filters(
+#     employee: str,
+#     approver_id: str | None = None,
+#     for_approval: bool = False,
+# ) -> dict:
+#     """Generates filters specifically for Work From Home requests."""
+
+#     if not employee:
+#         frappe.throw("Employee ID is required")
+
+#     if for_approval and not approver_id:
+#         frappe.throw("Approver ID is required for approval requests")
+
+#     filters = frappe._dict()
+
+#     if for_approval:
+#         filters.docstatus = 0
+#         filters.employee = ("=", employee)
+#         filters.approver = approver_id  # Approver-specific filter
+
+#         # Check if Work From Home has a workflow
+#         workflow = get_workflow("Work From Home")
+#         if workflow:
+#             allowed_states = get_allowed_states_for_workflow(workflow, approver_id)
+#             filters[workflow.workflow_state_field] = ("in", allowed_states)
+#         else:
+#             filters.status = "Pending Approval"
+
+#     else:
+#         filters.docstatus = ("!=", 2)
+#         filters.employee = employee
+
+#     print("🔍 Applied Filters:", filters)  # Debugging output
+#     return filters
+
+
+
+
+
+# from datetime import datetime
+
+# @frappe.whitelist()
+# def get_work_from_home(
+#     employee: str,
+#     approver_id: str | None = None,
+#     for_approval: bool = False,
+#     limit: int | None = 50,
+# ) -> list[dict]:
+#     """Fetch Work From Home requests with specific filters."""
+
+#     filters = get_wfh_filters(employee, approver_id, for_approval)
+
+#     fields = [
+#         "name",
+#         "employee",
+#         "employee_name",
+#         "status",
+#         "from_date",
+#         "to_date",
+#         "approver",
+#         "creation",
+#     ]
+
+#     if workflow_state_field := get_workflow_state_field("Work From Home"):
+#         fields.append(workflow_state_field)
+
+#     wfhs = frappe.get_list(
+#         "Work From Home",
+#         fields=fields,
+#         filters=filters,
+#         order_by="creation desc",
+#         limit=limit,
+#     )
+
+#     # Convert date fields to strings
+#     for wfh in wfhs:
+#         wfh["from_date"] = wfh["from_date"].strftime("%Y-%m-%d") if wfh.get("from_date") else None
+#         wfh["to_date"] = wfh["to_date"].strftime("%Y-%m-%d") if wfh.get("to_date") else None
+#         wfh["creation"] = wfh["creation"].strftime("%Y-%m-%d %H:%M:%S") if wfh.get("creation") else None
+
+#         if workflow_state_field:
+#             wfh["workflow_state_field"] = workflow_state_field
+
+#     return wfhs
+
+    
+
+
+
+#Work from home Approver
+import frappe
+from frappe import _
+
+@frappe.whitelist()
+def get_wfh_approval_details(employee: str) -> dict:
+    # Fetch custom WFH approver and department from Employee record
+    custom_wfh_approver, department = frappe.get_cached_value(
+        "Employee",
+        employee,
+        ["custom_wfh_approver", "department"],
+    )
+
+    # If no direct approver is found, get from Department Approver
+    if not custom_wfh_approver and department:
+        custom_wfh_approver = frappe.db.get_value(
+            "Department Approver",
+            {"parent": department, "parentfield": "custom_wfh_approver", "idx": 1},
+            "approver",
+        )
+
+    # Fetch the full name of the approver
+    custom_wfh_approver_name = (
+        frappe.db.get_value("User", custom_wfh_approver, "full_name", cache=True)
+        if custom_wfh_approver else None
+    )
+
+    # Get department-level approvers
+    department_approvers = get_department_approvers(department, "custom_wfh_approver")
+
+    # Ensure the main approver is in the department approvers list
+    if custom_wfh_approver and custom_wfh_approver not in [
+        approver["name"] for approver in department_approvers
+    ]:
+        department_approvers.append({"name": custom_wfh_approver, "full_name": custom_wfh_approver_name})
+
+    return {
+        "wfh_approver": custom_wfh_approver,
+        "wfh_approver_name": custom_wfh_approver_name,
+        "department_approvers": department_approvers,
+        "is_mandatory": frappe.db.get_single_value(
+            "HR Settings", "work_from_home_approver_mandatory"
+        ),
+    }
+
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_employees():
+    """
+    Returns a list of employees with selected fields.
+    """
+    employees = frappe.get_all(
+        "Employee", 
+        fields=["employee_name", "company_email", "cell_number", "department","custom_contact_card_heading"],
+        filters={"status":"Active"}
+    )
+    return employees
+
+
+
+import frappe
+from frappe import _
+from typing import Optional, List, Dict
+from datetime import datetime
+
+# def get_wfh_filters(
+#     employee: str,
+#     approver_id: Optional[str] = None,
+#     for_approval: bool = False,
+# ) -> dict:
+#     """Generates filters specifically for Work From Home requests."""
+
+#     if not employee:
+#         frappe.throw(_("Employee ID is required"))
+
+#     if for_approval and not approver_id:
+#         frappe.throw(_("Approver ID is required for approval requests"))
+
+#     filters = frappe._dict()
+
+#     if for_approval:
+#         filters.docstatus = 0
+#         filters.approver = approver_id  # Filter by Approver ID
+#         filters.employee = employee  # Ensure Employee ID is included
+
+#         # Check if Work From Home has a workflow
+#         workflow = get_workflow("Work From Home")
+#         if workflow:
+#             allowed_states = get_allowed_states_for_workflow(workflow, approver_id)
+#             filters[workflow.workflow_state_field] = ("in", allowed_states)
+#         else:
+#             filters.status = "Pending Approval"
+
+#     else:
+#         filters.docstatus = ("!=", 2)
+#         filters.employee = employee
+
+#     print("🔍 Applied Filters:", filters)  # Debugging output
+#     return filters
+# @frappe.whitelist()
+# def get_work_from_home(
+#     employee: str,
+#     approver_id: Optional[str] = None,
+#     for_approval: bool = False,
+#     limit: Optional[int] = 50,
+# ) -> List[Dict]:
+#     """Fetch Work From Home requests with specific filters."""
+
+#     filters = get_filters("Work From Home",employee, approver_id, for_approval)
+
+#     fields = [
+#         "name",
+#         "employee",
+#         "employee_name",
+#         "status",
+#         "from_date",
+#         "to_date",
+#         "approver",
+#         "creation",
+#     ]
+
+#     # Get workflow field if applicable
+#     workflow_state_field = get_workflow_state_field("Work From Home")
+#     if workflow_state_field:
+#         fields.append(workflow_state_field)
+
+#     # Fetch data
+#     wfhs = frappe.get_list(
+#         "Work From Home",
+#         fields=fields,
+#         filters=filters,
+#         order_by="creation desc",
+#         limit_page_length=limit,
+#     )
+
+#     # Convert datetime fields to strings
+#     for wfh in wfhs:
+#         wfh["from_date"] = (
+#             wfh["from_date"].strftime("%Y-%m-%d") if wfh.get("from_date") else None
+#         )
+#         wfh["to_date"] = (
+#             wfh["to_date"].strftime("%Y-%m-%d") if wfh.get("to_date") else None
+#         )
+#         wfh["creation"] = (
+#             wfh["creation"].strftime("%Y-%m-%d %H:%M:%S") if wfh.get("creation") else None
+#         )
+
+#     return wfhs
+
+
+import frappe
+from frappe import _
+from typing import Optional, List, Dict
+from datetime import datetime
+
+def get_wfh_filters(
+    employee: str,
+    approver_id: Optional[str] = None,
+    for_approval: bool = False,
+) -> dict:
+    """Generates filters specifically for Work From Home requests."""
+
+    if not employee:
+        frappe.throw(_("Employee ID is required"))
+
+    if for_approval and not approver_id:
+        frappe.throw(_("Approver ID is required for approval requests"))
+
+    filters = frappe._dict()
+    filters.docstatus = 0  # Only include active requests
+
+    if for_approval:
+        filters.approver = approver_id  # Ensure correct approver is set
+
+        # Allow "Open" and "Pending Approval" statuses
+        filters.status = ("in", ["Open", "Pending Approval"])
+
+        # Check if Work From Home has a workflow
+        workflow = get_workflow("Work From Home")
+        if workflow:
+            allowed_states = get_allowed_states_for_workflow(workflow, approver_id)
+            filters[workflow.workflow_state_field] = ("in", allowed_states)
+
+    else:
+        filters.employee = employee  # Fetch WFH requests for the given employee
+
+    frappe.logger().info(f"🔍 Applied WFH Filters: {filters}")  # Debugging log
+    return filters
+
+
+@frappe.whitelist()
+def get_work_from_home(
+    employee: str,
+    approver_id: Optional[str] = None,
+    for_approval: bool = False,
+    limit: Optional[int] = 50,
+) -> List[Dict]:
+    """Fetch Work From Home requests with specific filters."""
+
+    filters = get_wfh_filters(employee, approver_id, for_approval)
+
+    fields = [
+        "name",
+        "employee",
+        "employee_name",
+        "status",
+        "from_date",
+        "to_date",
+        "approver",
+        "creation",
+    ]
+
+    # Get workflow field if applicable
+    workflow_state_field = get_workflow_state_field("Work From Home")
+    if workflow_state_field:
+        fields.append(workflow_state_field)
+
+    # Fetch data
+    wfhs = frappe.get_list(
+        "Work From Home",
+        fields=fields,
+        filters=filters,
+        order_by="creation desc",
+        limit=limit,
+    )
+
+    # Convert datetime fields to strings
+    for wfh in wfhs:
+        wfh["from_date"] = wfh["from_date"].strftime("%Y-%m-%d") if wfh.get("from_date") else None
+        wfh["to_date"] = wfh["to_date"].strftime("%Y-%m-%d") if wfh.get("to_date") else None
+        wfh["creation"] = wfh["creation"].strftime("%Y-%m-%d %H:%M:%S") if wfh.get("creation") else None
+
+    frappe.logger().info(f"📊 WFH Records Fetched: {wfhs}")  # Debugging log
+    return wfhs

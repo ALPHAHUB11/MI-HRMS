@@ -1,6 +1,27 @@
 // This config holds the fields that should be shown in the request summary action sheet
 // TODO: This should be config-driven somehow
-
+export const WFH_FIELDS = [
+	{
+	fieldname: "name",
+	label: "ID",
+	fieldtype: "Data",
+	},
+	{
+		fieldname: "from_date",
+		label: "From Date",
+		fieldtype: "Date",
+	},
+	{
+		fieldname: "to_date",
+		label: "To Date",
+		fieldtype: "Date",
+	},
+	{
+		fieldname: "approver",
+		label: "Approver",
+		fieldtype: "Data",
+	},
+]
 export const LEAVE_FIELDS = [
 	{
 		fieldname: "name",

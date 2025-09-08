@@ -1,10 +1,9 @@
 <template>
   <div class="flex flex-col w-full">
-    <!-- Header -->
     <div class="flex flex-row justify-between items-center px-4">
       <div class="text-lg text-gray-800 font-bold">{{ __("Leave Balance") }}</div>
       <router-link
-        :to="{ name: 'LeaveApplicationListView' }"
+        :to="{ name: 'WorkFromHomeView' }"
         v-slot="{ navigate }"
         v-if="leaveBalance.data"
       >
@@ -12,12 +11,12 @@
           @click="navigate"
           class="text-sm text-gray-800 font-semibold cursor-pointer underline underline-offset-2"
         >
-          {{ __("View Leave History") }}
+          {{ __("Work From History History") }}
         </div>
       </router-link>
     </div>
 
-    <!-- Chart Cards -->
+    <!-- Leave Balance Dashboard -->
     <div class="flex flex-row gap-4 overflow-x-auto py-2 mt-3" v-if="leaveBalance.data">
       <div
         v-for="(allocation, leave_type, index) in leaveBalance.data"
@@ -37,56 +36,18 @@
       </div>
     </div>
 
-    <!-- Fallback -->
     <EmptyState message="You have no leaves allocated" v-else />
-
-    <!-- Leave Summary Table -->
-    <div v-if="leaveSummary.length > 0" class="overflow-x-auto px-4 mt-6">
-      <table class="table-auto w-full border-collapse text-left text-sm">
-        <thead class="text-gray-600 border-b">
-          <tr>
-            <th class="pb-2 pr-4">Leave Type</th>
-            <th class="pb-2 pr-4">Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, i) in leaveSummary" :key="i" class="border-b text-gray-800">
-            <td class="py-2 pr-4">{{ row["Leave Type"] }}</td>
-            <td class="py-2 pr-4">{{ row.Balance }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { call } from "frappe-ui";
 import SemicircleChart from "@/components/SemicircleChart.vue";
-import { leaveBalance } from "@/data/leaves";
-import { employeeResource } from "@/data/employee";
 
-const leaveSummary = ref([]);
+import { leaveBalance } from "@/data/leaves";
 
 const getChartColor = (index) => {
+  // note: tw colors - rose-400, pink-400 & purple-500 of the old frappeui palette #918ef5
   const chartColors = ["text-[#fb7185]", "text-[#f472b6]", "text-[#918ef5]"];
   return chartColors[index % chartColors.length];
 };
-
-onMounted(async () => {
-  try {
-    const employee_id = employeeResource.data?.name;
-
-    if (!employee_id) return;
-
-    const res = await call("hrms.api.get_monthly_accrual_leave_balance", {
-      employee: employee_id,
-    });
-
-    leaveSummary.value = [...res.message];
-  } catch (err) {
-    // Optionally handle the error silently or show a toast/message
-  }
-});
 </script>

@@ -27,6 +27,7 @@ import ExpenseIcon from "@/components/icons/ExpenseIcon.vue";
 import EmployeeAdvanceIcon from "@/components/icons/EmployeeAdvanceIcon.vue";
 import SalaryIcon from "@/components/icons/SalaryIcon.vue";
 
+
 const __ = inject("$translate");
 const employeeInfo = ref({ custom_eligible_for_work_from_home: "No" });
 
@@ -65,6 +66,11 @@ const quickLinks = ref([
     icon: markRaw(AllEmpIcon),
     title: __("Employee Info"),
     route: "EmployeeInfo",
+  },
+  {
+    icon: markRaw(LeaveIcon),
+    title: __("Company Policy"),
+    route: "policy",
   },
 ]);
 

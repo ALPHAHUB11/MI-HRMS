@@ -1014,3 +1014,4 @@ def get_monthly_accrual_leave_balance(employee):
         })
 
     return frappe._dict(message=leave_balance_data)
+

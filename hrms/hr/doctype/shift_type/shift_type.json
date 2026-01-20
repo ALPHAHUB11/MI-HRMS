@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_rename": 1,
  "autoname": "prompt",
  "creation": "2018-04-13 16:22:52.954783",
  "doctype": "DocType",
@@ -188,7 +189,7 @@
   }
  ],
  "links": [],
- "modified": "2024-12-18 19:03:38.278336",
+ "modified": "2026-01-15 10:32:29.679229",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Type",
@@ -229,6 +230,7 @@
   }
  ],
  "quick_entry": 1,
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

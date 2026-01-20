@@ -1,5 +1,5 @@
 app_name = "hrms"
-app_title = "Frappe HR"
+app_title = "MI HR"
 app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = "Modern HR and Payroll Software"
 app_email = "contact@frappe.io"
@@ -10,13 +10,14 @@ source_link = "http://github.com/frappe/hrms"
 add_to_apps_screen = [
 	{
 		"name": "hrms",
-		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
-		"title": "Frappe HR",
+		# "logo": "/assets/hrms/manifest/Logo.png",
+  		"logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIokfmWyfJWEL17Xm88E7E-g3oGrMPb4U49Q&s",
+
+		"title": "MI HR",
 		"route": "/app/hr",
 		"has_permission": "hrms.hr.utils.check_app_permission",
 	}
 ]
-
 # Includes in <head>
 # ------------------
 

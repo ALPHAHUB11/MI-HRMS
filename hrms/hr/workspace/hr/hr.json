@@ -5,7 +5,7 @@
    "label": "Hiring vs Attrition Count"
   }
  ],
- "content": "[{\"id\":\"OYBe5v47tS\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Hiring vs Attrition Count\",\"col\":12}},{\"id\":\"1VKTMnitE1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"Se3WS8_n-j\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"LVjmlK8ZCe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"gnPcjAmw5P\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"5eAW-yoKQr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recruitment Dashboard\",\"col\":3}},{\"id\":\"WEwQD7C_4B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"6Smj2wfvWc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"DlHPjECseH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Claims Dashboard\",\"col\":3}},{\"id\":\"pzwsJpRtvC\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"po5qUSVz-Q\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"5sfeCDDSGK\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}},{\"id\":\"GMsVdTxL8s\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"WU60ksxbdR\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"EnxIsd1W4f\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"AgUg-RbS7B\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"jjq0ZfNo6_\",\"type\":\"card\",\"data\":{\"card_name\":\"Expense Claim\",\"col\":4}},{\"id\":\"ERf6awveeS\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"srjOCbWqsD\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"klq_6lWAJF\",\"type\":\"card\",\"data\":{\"card_name\":\"Project\",\"col\":4}},{\"id\":\"icGo6bHA2E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work From Home\",\"col\":3}},{\"id\":\"K_4YRMrilc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Allocation\",\"col\":3}},{\"id\":\"_3zM1MuYk8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Attendance Report\",\"col\":3}},{\"id\":\"AhAbA5ylNV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Monthly Attendance Report\",\"col\":3}},{\"id\":\"oAAqmwpGZj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Info\",\"col\":3}},{\"id\":\"TfIsxoMicX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset\",\"col\":3}},{\"id\":\"tOyRA5Sjvx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Detail Work Duration Report\",\"col\":3}},{\"id\":\"qitohWWWjD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Attendance Whatsapp Report\",\"col\":3}},{\"id\":\"2GlSX2NChf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Status Report\",\"col\":3}},{\"id\":\"ZKkhAhCu2I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Increment Letter\",\"col\":3}},{\"id\":\"L_cZE4orqb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"FlRDZKtLaX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"sfyNVRUMlV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Birthday\",\"col\":3}}]",
+ "content": "[{\"id\":\"OYBe5v47tS\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Hiring vs Attrition Count\",\"col\":12}},{\"id\":\"1VKTMnitE1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"Se3WS8_n-j\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"LVjmlK8ZCe\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"gnPcjAmw5P\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"5eAW-yoKQr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recruitment Dashboard\",\"col\":3}},{\"id\":\"WEwQD7C_4B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"id\":\"6Smj2wfvWc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"DlHPjECseH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Claims Dashboard\",\"col\":3}},{\"id\":\"pzwsJpRtvC\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"po5qUSVz-Q\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"5sfeCDDSGK\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}},{\"id\":\"GMsVdTxL8s\",\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"id\":\"WU60ksxbdR\",\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"id\":\"EnxIsd1W4f\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"AgUg-RbS7B\",\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"id\":\"jjq0ZfNo6_\",\"type\":\"card\",\"data\":{\"card_name\":\"Expense Claim\",\"col\":4}},{\"id\":\"ERf6awveeS\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"srjOCbWqsD\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"klq_6lWAJF\",\"type\":\"card\",\"data\":{\"card_name\":\"Project\",\"col\":4}},{\"id\":\"icGo6bHA2E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Work From Home\",\"col\":3}},{\"id\":\"K_4YRMrilc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Allocation\",\"col\":3}},{\"id\":\"_3zM1MuYk8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Attendance Report\",\"col\":3}},{\"id\":\"AhAbA5ylNV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Monthly Attendance Report\",\"col\":3}},{\"id\":\"oAAqmwpGZj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Info\",\"col\":3}},{\"id\":\"TfIsxoMicX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset\",\"col\":3}},{\"id\":\"tOyRA5Sjvx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Detail Work Duration Report\",\"col\":3}},{\"id\":\"qitohWWWjD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Attendance Whatsapp Report\",\"col\":3}},{\"id\":\"2GlSX2NChf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Status Report\",\"col\":3}},{\"id\":\"L_cZE4orqb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"FlRDZKtLaX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Salary Register\",\"col\":3}},{\"id\":\"sfyNVRUMlV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Birthday\",\"col\":3}},{\"id\":\"tVBxoCUtIJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Number Of Year In Mi\",\"col\":3}}]",
  "creation": "2020-03-02 15:48:58.322521",
  "custom_blocks": [],
  "docstatus": 0,
@@ -17,47 +17,6 @@
  "is_hidden": 0,
  "label": "HR",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Settings",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "HR Settings",
-   "link_count": 0,
-   "link_to": "HR Settings",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Daily Work Summary Group",
-   "link_count": 0,
-   "link_to": "Daily Work Summary Group",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "dependencies": "",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Team Updates",
-   "link_count": 0,
-   "link_to": "team-updates",
-   "link_type": "Page",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -407,9 +366,61 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "HR Settings",
+   "link_count": 0,
+   "link_to": "HR Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Work Summary Group",
+   "link_count": 0,
+   "link_to": "Daily Work Summary Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Team Updates",
+   "link_count": 0,
+   "link_to": "team-updates",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Holiday List",
+   "link_count": 0,
+   "link_to": "Holiday List",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-09-15 12:57:59.580114",
+ "modified": "2026-01-15 10:43:17.370498",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR",
@@ -441,6 +452,14 @@
    "label": "Leave Status Report",
    "link_to": "Leave Status Report",
    "report_ref_doctype": "Leave Application",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Total Number Of Year In Mi",
+   "link_to": "Total Number of Year in MI",
+   "report_ref_doctype": "Employee",
    "type": "Report"
   },
   {

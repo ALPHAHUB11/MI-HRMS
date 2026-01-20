@@ -14,6 +14,7 @@
           <span @click="navigate" class="underline">View List</span>
         </router-link>
       </div>
+
       <Button
         class="mt-4 mb-1 drop-shadow-sm py-5 text-base"
         id="open-checkin-modal"
@@ -68,8 +69,7 @@
             marginwidth="0"
             style="border: 0"
             :src="`https://maps.google.com/maps?q=${latitude},${longitude}&hl=en&z=15&amp;output=embed`"
-          >
-          </iframe>
+          ></iframe>
         </div>
       </template>
 
@@ -88,7 +88,6 @@
 import { createResource, createListResource, toast, FeatherIcon } from "frappe-ui";
 import { computed, inject, ref, onMounted, onBeforeUnmount } from "vue";
 import { IonModal, modalController } from "@ionic/vue";
-
 import { formatTimestamp } from "@/utils/formatters";
 
 const DOCTYPE = "Employee Checkin";
@@ -97,15 +96,15 @@ const socket = inject("$socket");
 const employee = inject("$employee");
 const dayjs = inject("$dayjs");
 const __ = inject("$translate");
+
 const checkinTimestamp = ref(null);
 const latitude = ref(0);
 const longitude = ref(0);
 const locationStatus = ref("");
 
-// ---------- NEW: helper to extract server error reason ----------
+// ---------- helper to extract frappe error ----------
 function parseFrappeError(err) {
   try {
-    // Frappe _server_messages (JSON string of JSON strings)
     const raw = err?._server_messages || err?.response?._server_messages;
     if (raw) {
       const arr = JSON.parse(raw);
@@ -122,17 +121,14 @@ function parseFrappeError(err) {
       if (msgs.length) return msgs.join(" ");
     }
 
-    // Normalized messages array
     if (Array.isArray(err?.messages) && err.messages.length) {
       return err.messages.join(" ");
     }
 
-    // Exception + message
     const exc = err?.exc_type || err?.exception || err?.error_type;
     const msg = err?.message || err?.msg || err?.error || err?.responseJSON?.message;
     if (exc || msg) return [exc, msg].filter(Boolean).join(": ");
 
-    // HTTP fallback
     const httpText =
       err?.response?.data?.message ||
       err?.response?.statusText ||
@@ -145,7 +141,7 @@ function parseFrappeError(err) {
     return "Unknown error. Please try again.";
   }
 }
-// ----------------------------------------------------------------
+// ----------------------------------------------------
 
 const settings = createResource({
   url: "hrms.api.get_hr_settings",
@@ -155,9 +151,7 @@ const settings = createResource({
 const checkins = createListResource({
   doctype: DOCTYPE,
   fields: ["name", "employee", "employee_name", "log_type", "time", "device_id"],
-  filters: {
-    employee: employee.data.name,
-  },
+  filters: { employee: employee.data.name },
   orderBy: "time desc",
 });
 checkins.reload();
@@ -171,21 +165,19 @@ const lastLogType = computed(() => {
   return lastLog?.value?.log_type === "IN" ? "check-in" : "check-out";
 });
 
-// Adjusted logic to reset daily
+// ---------- UPDATED: no daily reset ----------
 const nextAction = computed(() => {
-  const lastTime = lastLog?.value?.time;
-  const lastLogDate = lastTime ? dayjs(lastTime).format("YYYY-MM-DD") : null;
-  const currentDate = dayjs().format("YYYY-MM-DD");
+  const lastType = lastLog?.value?.log_type;
 
-  if (!lastLogDate || lastLogDate !== currentDate) {
-    // If it's a new day, start with "Check In"
+  if (!lastType) {
     return { action: "IN", label: __("Check In") };
-  } else {
-    return lastLog?.value?.log_type === "IN"
-      ? { action: "OUT", label: __("Check Out") }
-      : { action: "IN", label: __("Check In") };
   }
+
+  return lastType === "IN"
+    ? { action: "OUT", label: __("Check Out") }
+    : { action: "IN", label: __("Check In") };
 });
+// ---------------------------------------------
 
 function handleLocationSuccess(position) {
   latitude.value = position.coords.latitude;
@@ -242,18 +234,16 @@ const submitLog = (logType) => {
         });
       },
       onError(error) {
-  const reason = parseFrappeError(error);
-
-  toast({
-    title: __("Error"),
-    text: `${actionLabel} ${__("failed")}. ${reason}`,
-    icon: "alert-circle",
-    position: "bottom-center",
-    iconClasses: "text-red-500",
-  });
-
-  console.error("Check-in failed:", error);
-},
+        const reason = parseFrappeError(error);
+        toast({
+          title: __("Error"),
+          text: `${actionLabel} ${__("failed")}. ${reason}`,
+          icon: "alert-circle",
+          position: "bottom-center",
+          iconClasses: "text-red-500",
+        });
+        console.error("Check-in failed:", error);
+      },
     }
   );
 };

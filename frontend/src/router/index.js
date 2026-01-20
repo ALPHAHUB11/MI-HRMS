@@ -55,7 +55,7 @@ const routes = [
 				path: "/dashboardd/work-from-home",
 				name: "WhfDetails",
 				component: () => import("@/views/work_from_home/Dashboardd.vue"),
-			}, 
+			},
 			{
 				path: "/task",
 				name: "TaskView",
@@ -70,7 +70,12 @@ const routes = [
 				path: "/employee_info",
 				name: "EmployeeInfo",
 				component: () => import("@/views/employee_info/EmployeeInfo.vue"), // Adjust path as needed
-			},				
+			},
+			{
+				path: "/policy",
+				name: "policy",
+				component: () => import("@/views/policy/Policy.vue"), // Adjust path as needed
+			},
 		],
 	},
 	{
